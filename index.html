@@ -14,6 +14,7 @@
     <style>
         /* 重置和基本样式 */
         body {
+            overflow-x: hidden;
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             font-size: 18px;
@@ -29,6 +30,7 @@
         }
         /* 头部 */
         header {
+            overflow-x: hidden;
             position: fixed;
             top: 0;
             left: 0;
@@ -44,27 +46,34 @@
             transition: background-color 0.5s, color 0.5s;
         }
         header h1 {
+            overflow-x: hidden;
             margin: 0;
             font-size: 1.5rem;
             font-weight: 600;
             color: inherit;
         }
         .toggle-button {
+            overflow-x: hidden;
             cursor: pointer;
             background-color: transparent;
             border: none;
             font-size: 1rem;
             color: #ffffff; /* 切换按钮颜色 */
-            transition: color 0.3s;
+            transition: color 0.3s, margin-left 0.3s;
+            padding: auto;
+            margin-right: 30px;
         }
         .toggle-button:hover {
-            color: #007aff; /* 切换按钮悬停颜色 */
+            overflow-x: hidden;
+            color: #ff0000; /* 切换按钮悬停颜色 */
         }
         .toggle-button:focus {
+            overflow-x: hidden;
             outline: none;
         }
         /* 区块 */
         .sections {
+            overflow-x: hidden;
             color: #ffffff;
             width: 100%;
             max-width: 1200px;
@@ -74,6 +83,7 @@
             align-items: center;
         }
         .section {
+            overflow-x: hidden;
             width: 100%;
             padding: 2rem;
             margin-bottom: 2rem;
@@ -85,52 +95,65 @@
             transform: translateY(20px); /* 动画初始位置 */
         }
         .section.active {
+            overflow-x: hidden;
             opacity: 1; /* 显示活动区块 */
             transform: translateY(0); /* 重置位置 */
         }
         .section h2 {
-            margin-top: 0;
+            padding-top: 30px;
+            margin-top: 30px;
+            overflow-x: hidden;
             font-size: 1.8rem;
             font-weight: 600;
         }
         .section p {
+            overflow-x: hidden;
             font-size: 1rem;
         }
         .projects .project {
+            overflow-x: hidden;
             margin-bottom: 1.5rem;
         }
         .project h3 {
+            overflow-x: hidden;
             margin-top: 0;
             font-size: 1.2rem;
             font-weight: 500;
         }
         .project p {
+            overflow-x: hidden;
             font-size: 1rem;
         }
         /* 亮模式 */
         .light-mode {
+            overflow-x: hidden;
             background-color: #f0f0f0; /* 亮模式背景 */
             color: #333; /* 亮模式文本颜色 */
         }
         .light-mode header {
+            overflow-x: hidden;
             background-color: #f0f0f0; /* 亮模式头部背景 */
             color: #333; /* 亮模式头部文本颜色 */
         }
         .light-mode .section {
+            overflow-x: hidden;
             background-color: #f0f0f0; /* 亮模式区块背景 */
             color: #333; /* 亮模式区块文本颜色 */
         }
         /* 画布 */
         canvas {
+            overflow-x: hidden;
             width: 100%;
             height: auto;
         }
         /* 滚动效果的过渡类 */
         .section.transition-out {
+            overflow-x: hidden;
             opacity: 0;
             transform: translateY(-20px);
         }
         .section.transition-in {
+            overflow-x: hidden;
             opacity: 1;
             transform: translateY(0);
         }
@@ -140,7 +163,7 @@
     <header>
         <h1>Link's 个人网站</h1>
         <button class="toggle-button" onclick="toggleMode()">
-            切换模式
+            Dark
         </button>
     </header>
     <div class="sections">
@@ -196,6 +219,7 @@
             }, 800); // 根据CSS过渡时间调整时机
         });
 
+
         function toggleMode() {
             const body = document.body;
             const isLightMode = body.classList.toggle('light-mode');
@@ -219,10 +243,17 @@
                 section.style.color = textColor;
             });
 
-             // 设置Three.js模型的材质颜色
-             const materialColor = isLightMode ? 0x000000 : 0xffffff; // 根据需要调整颜色
+            // 更新切换按钮的文本和样式
+            const toggleButton = document.querySelector('.toggle-button');
+            toggleButton.textContent = isLightMode ? 'Light' : 'Dark';
+            toggleButton.style.marginLeft = '20px'; // 根据需要调整移动距离，这里调整为更舒适的位置
+            // 根据需要调整移动距离
+
+            // 设置Three.js模型的材质颜色
+            const materialColor = isLightMode ? 0x000000 : 0xffffff; // 根据需要调整颜色
             torusKnot.material.color.set(materialColor);
         }
+
 
         // Three.js设置用于3D演示
         const canvas3D = document.getElementById('3d-canvas');
